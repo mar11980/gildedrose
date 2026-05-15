@@ -1,7 +1,11 @@
 package com.gildedrose;
 
-public class TexttestFixture {
+import java.util.Arrays;
+import java.util.stream.IntStream;
+
+public class TextTestFixture {
     public static void main(String[] args) {
+
         System.out.println("OMGHAI!");
 
         Item[] items = new Item[] {
@@ -18,20 +22,23 @@ public class TexttestFixture {
 
         GildedRose app = new GildedRose(items);
 
-        int days = 2;
+        int days = 13;
         if (args.length > 0) {
             days = Integer.parseInt(args[0]) + 1;
         }
 
-        for (int i = 0; i < days; i++) {
+        IntStream.range(0, days).forEach(i -> {
+
             System.out.println("-------- day " + i + " --------");
             System.out.println("name, sellIn, quality");
-            for (Item item : items) {
-                System.out.println(item);
-            }
+
+            Arrays.stream(items)
+                .forEach(System.out::println);
+
             System.out.println();
+
             app.updateQuality();
-        }
+        });
     }
 
 }
